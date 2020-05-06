@@ -1,0 +1,174 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+
+paths:
+  /metrobus:
+    get:
+      operationId: metrobus.read_all
+      tags:
+        - Metrobus
+      summary: Regresa todas las unidades de metrobus
+      description: Regresa todas las unidades de metrobus
+      responses:
+        200:
+          description: ¡Éxito!
+          schema:
+            type: array
+            items:
+              properties:
+                update_time:
+                  type: string
+                  description: Fecha de consulta
+                vehicle_id:
+                  type: string
+                  description: Id del vehículo
+                geographic_point:
+                  type: string
+                  description: Punto de geolocalización
+                position_longitude:
+                  type: string
+                  description: Longitud
+                position_latitude:
+                  type: string
+                  description: Latidud
+                alcaldia:
+                  type: string
+                  description: Alcaldía
+                vehicle_current_status:
+                  type: string
+                  description: Estatus del vehículo
+                position_speed:
+                  type: string
+                  description: Velocidad
+
+  /metrobus/available/{vehicle_current_status}:
+    get:
+      operationId: metrobus.read_available
+      tags:
+        - Metrobus
+      summary: Regresa las unidades disponibles
+      description: Regresa las unidades disponibles
+      parameters:
+        - name: vehicle_current_status
+          in: path
+          description: Estatus del vehículo
+          type: string
+          required: True
+      responses:
+        200:
+          description: ¡Éxito!
+          schema:
+            type: object
+            properties:
+              update_time:
+                type: string
+                description: Fecha de consulta
+              vehicle_id:
+                type: string
+                description: Id del vehículo
+              geographic_point:
+                type: string
+                description: Punto de geolocalización
+              position_longitude:
+                type: string
+                description: Longitud
+              position_latitude:
+                type: string
+                description: Latitud
+              alcaldia:
+                type: string
+                description: Alcaldía
+              vehicle_current_status:
+                type: integer
+                description: Estatus del vehículo
+              position_speed:
+                type: string
+                description: Velocidad
+  /metrobus/vehicleID/{vehicle_id}:
+    get:
+      operationId: metrobus.read_id
+      tags:
+        - Metrobus
+      summary: Regresa el historial de la unidades consultada
+      description: Regresa el historial de la unidades consultada
+      parameters:
+        - name: vehicle_id
+          in: path
+          description: Historial
+          type: string
+          required: True
+      responses:
+        200:
+          description: ¡Éxito!
+          schema:
+            type: object
+            properties:
+              update_time:
+                type: string
+                description: Fecha de consulta
+              vehicle_id:
+                type: string
+                description: Id del vehículo
+              geographic_point:
+                type: string
+                description: Punto de geolocalización
+              position_longitude:
+                type: string
+                description: Longitud
+              position_latitude:
+                type: string
+                description: Latitud
+              alcaldia:
+                type: string
+                description: Alcaldía
+              vehicle_current_status:
+                type: integer
+                description: Estatus del vehículo
+              position_speed:
+                type: string
+                description: Velocidad
+  /metrobus/alcaldia:
+    get:
+      operationId: metrobus.read_alcaldia
+      tags:
+        - Metrobus
+      summary: Regresa el historial de alcaldias disponibles
+      description: Regresa el historial de alcaldia disponibles
+      responses:
+        200:
+          description: ¡Éxito!
+          schema:
+            type: object
+            properties:
+               alcaldia:
+                 type: string
+                 description: Alcaldía
+  /metrobus/vehiculo_alcaldia:
+    get:
+      operationId: metrobus.read_vehiculoAlcaldia
+      tags:
+        - Metrobus
+      summary: Regresa el historial de vehiculos en alcaldias disponibles
+      description: Regresa el historial de vehiculos en alcaldia disponibles
+      responses:
+        200:
+          description: ¡Éxito!
+          schema:
+            type: object
+            properties:
+              alcaldia:
+                type: string
+                description: Alcaldía
+              vehicle_id:
+                type: string
+                description: Id del vehículo
